@@ -307,9 +307,9 @@ export default function InputPage() {
                     >
                       {bulkUploading ? <Loader2 size={22} className="animate-spin" style={{ color: "var(--accent)" }} /> : <Upload size={22} style={{ color: "var(--text-muted)" }} />}
                       <p className="mt-2 text-sm font-medium" style={{ color: "var(--text-secondary)" }}>
-                        {bulkUploading ? "Extracting text…" : "Drop PDFs or click to upload"}
+                        {bulkUploading ? "Extracting text…" : "Drop PDF/DOCX or click to upload"}
                       </p>
-                      <p className="mt-1 text-xs" style={{ color: "var(--text-muted)" }}>Multiple PDFs supported</p>
+                      <p className="mt-1 text-xs" style={{ color: "var(--text-muted)" }}>Multiple PDF/DOCX supported</p>
                     </div>
                     <input ref={bulkFileInputRef} type="file" accept=".pdf,.docx" multiple className="hidden"
                       onChange={(e) => Array.from(e.target.files ?? []).forEach(handleBulkFileUpload)} />

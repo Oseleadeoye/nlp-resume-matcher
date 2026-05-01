@@ -128,8 +128,9 @@ export default function LeaderboardPage() {
 
   // Upload a PDF
   const handleFileUpload = useCallback(async (file: File) => {
-    if (!file.name.toLowerCase().endsWith(".pdf")) {
-      setError("Only PDF files are supported");
+    const isAllowed = [".pdf", ".docx"].some(ext => file.name.toLowerCase().endsWith(ext));
+    if (!isAllowed) {
+      setError("Only PDF and DOCX files are supported");
       return;
     }
     if (resumes.length >= 20) {
@@ -343,16 +344,16 @@ export default function LeaderboardPage() {
                   <Upload size={24} style={{ color: "var(--text-muted)" }} />
                 )}
                 <p className="mt-2 text-sm font-medium" style={{ color: "var(--text-secondary)" }}>
-                  {uploading ? "Extracting text…" : "Drop PDFs here or click to upload"}
+                  {uploading ? "Extracting text…" : "Drop PDF/DOCX here or click to upload"}
                 </p>
                 <p className="mt-1 text-xs" style={{ color: "var(--text-muted)" }}>
-                  PDF files only · up to 20 resumes
+                  PDF or DOCX files only · up to 20 resumes
                 </p>
               </div>
               <input
                 ref={fileInputRef}
                 type="file"
-                accept=".pdf"
+                accept=".pdf,.docx"
                 multiple
                 className="hidden"
                 onChange={(e) => Array.from(e.target.files ?? []).forEach(handleFileUpload)}

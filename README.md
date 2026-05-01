@@ -272,5 +272,4 @@ This project is for educational and portfolio purposes.
 - Vik Dayal
 - Nathaniel Ola Ogunleye
 - Osele Adeoye
-- Barile Barisua
 - Huynh Hai Trieu Le

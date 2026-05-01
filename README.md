@@ -153,15 +153,20 @@ Open **`http://localhost:3000`** in your browser.
 
 ---
 
-## Deployment Options
+## Deployment
 
-### FastAPI Backend
-- **Render / Heroku:** The Python application seamlessly deploys by connecting your GitHub repo and selecting `backend/run.py` as the worker process. 
-- **Docker:** We recommend containerizing for optimal handling of model caching. Build memory overhead requires at least `1-2GB` of free RAM due to the NLP transformers.
+### 1. Backend (Hugging Face Spaces)
+*   Create a new **Space** on [Hugging Face](https://huggingface.co/new-space).
+*   Select **Docker** as the SDK.
+*   Choose the **Blank** template.
+*   Connect your GitHub repository.
+*   The space will automatically use the `Dockerfile` in the root to build and deploy your FastAPI app on port `7860`.
+*   *Note: Hugging Face provides 16GB of RAM for free, which is perfect for this project's NLP models.*
 
-### Next.js Frontend
-- **Vercel:** Optimized out-of-the-box. Go to Vercel, import the repo, change the root directory to `src/` (or leave as root where `package.json` lives), and deploy.
-- **Netlify:** Drag and drop the `.next` built folder or link directly via GitHub. Ensure you map the `NEXT_PUBLIC_API_BASE_URL` env variable to your hosted backend url.
+### 2. Frontend (Vercel)
+*   Go to [Vercel](https://vercel.com/new) and import your GitHub repository.
+*   **Environment Variables:** Add a new variable `NEXT_PUBLIC_API_BASE_URL` and set it to your Hugging Face Space URL (e.g., `https://your-username-space-name.hf.space/api`).
+*   Deploy!
 
 ---
 

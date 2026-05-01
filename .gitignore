@@ -4,5 +4,6 @@ __pycache__/
 *.pyc
 .next/
 node_modules/
-job-pipeline/data/
+job-pipeline/data/raw/
+job-pipeline/data/processed/
 test-data/

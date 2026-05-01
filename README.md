@@ -1,3 +1,12 @@
+---
+title: Resume Match
+emoji: 📄
+colorFrom: blue
+colorTo: indigo
+sdk: docker
+pinned: false
+---
+
 <p align="center">
   <h1 align="center">ResumeMatch</h1>
   <p align="center">

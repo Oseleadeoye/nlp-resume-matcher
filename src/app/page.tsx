@@ -45,10 +45,10 @@ export default function InputPage() {
 
   const canSubmit = resumeText.length >= 50 && !loading && !uploading && (mode === "rank" || jobDescription.length >= 50);
   const canBulkSubmit = bulkResumes.length > 0 && !loading && !bulkUploading;
-
   const handleFileUpload = useCallback(async (file: File) => {
-    if (!file.name.toLowerCase().endsWith(".pdf")) {
-      setError("Only PDF files are supported");
+    const isAllowed = [".pdf", ".docx"].some(ext => file.name.toLowerCase().endsWith(ext));
+    if (!isAllowed) {
+      setError("Only PDF and DOCX files are supported");
       return;
     }
 
@@ -103,8 +103,9 @@ export default function InputPage() {
 
   // Bulk upload handler
   const handleBulkFileUpload = useCallback(async (file: File) => {
-    if (!file.name.toLowerCase().endsWith(".pdf")) {
-      setError("Only PDF files are supported");
+    const isAllowed = [".pdf", ".docx"].some(ext => file.name.toLowerCase().endsWith(ext));
+    if (!isAllowed) {
+      setError("Only PDF and DOCX files are supported");
       return;
     }
     setBulkResumes((prev) => {
@@ -310,7 +311,7 @@ export default function InputPage() {
                       </p>
                       <p className="mt-1 text-xs" style={{ color: "var(--text-muted)" }}>Multiple PDFs supported</p>
                     </div>
-                    <input ref={bulkFileInputRef} type="file" accept=".pdf" multiple className="hidden"
+                    <input ref={bulkFileInputRef} type="file" accept=".pdf,.docx" multiple className="hidden"
                       onChange={(e) => Array.from(e.target.files ?? []).forEach(handleBulkFileUpload)} />
                     {bulkResumes.length > 0 && (
                       <ul className="mt-3 space-y-1">
@@ -430,13 +431,13 @@ export default function InputPage() {
                         {uploading ? "Extracting text..." : "Drop PDF here or click to upload"}
                       </p>
                       <p className="mt-1 text-xs" style={{ color: "var(--text-muted)" }}>
-                        PDF files only
+                        PDF or DOCX files only
                       </p>
                     </div>
                     <input
                       ref={fileInputRef}
                       type="file"
-                      accept=".pdf"
+                      accept=".pdf,.docx"
                       className="hidden"
                       onChange={(e) => {
                         const file = e.target.files?.[0];

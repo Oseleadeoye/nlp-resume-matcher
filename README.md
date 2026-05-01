@@ -13,9 +13,16 @@ pinned: false
     <strong>AI-powered resume-to-job matching built on Canadian open labour-market data</strong>
   </p>
   <p align="center">
-    <a href="#features">Features</a> · <a href="#design-philosophy">Design</a> · <a href="#architecture">Architecture</a> · <a href="#getting-started">Getting Started</a> · <a href="#deployment-options">Deployment</a>
+    <a href="#features">Features</a> · <a href="#design-philosophy">Design</a> · <a href="#architecture">Architecture</a> · <a href="#live-demo">Live Demo</a> · <a href="#getting-started">Setup</a>
   </p>
 </p>
+
+---
+
+## 🚀 Live Demo
+
+- **Frontend (Web App):** [nlp-resume-matcher-eta.vercel.app](https://nlp-resume-matcher-eta.vercel.app/)
+- **Backend (API Docs):** [osele1-nlp-resume-matcher.hf.space/docs](https://osele1-nlp-resume-matcher.hf.space/docs)
 
 ---
 
@@ -162,20 +169,6 @@ Open **`http://localhost:3000`** in your browser.
 
 ---
 
-## Deployment
-
-### 1. Backend (Hugging Face Spaces)
-*   Create a new **Space** on [Hugging Face](https://huggingface.co/new-space).
-*   Select **Docker** as the SDK.
-*   Choose the **Blank** template.
-*   Connect your GitHub repository.
-*   The space will automatically use the `Dockerfile` in the root to build and deploy your FastAPI app on port `7860`.
-*   *Note: Hugging Face provides 16GB of RAM for free, which is perfect for this project's NLP models.*
-
-### 2. Frontend (Vercel)
-*   Go to [Vercel](https://vercel.com/new) and import your GitHub repository.
-*   **Environment Variables:** Add a new variable `NEXT_PUBLIC_API_BASE_URL` and set it to your Hugging Face Space URL (e.g., `https://your-username-space-name.hf.space/api`).
-*   Deploy!
 
 ---
 
@@ -275,15 +268,29 @@ pytest tests/ -v
 
 ---
 
+---
+
+## 🛠️ Self-Hosting & Deployment
+
+The live version is hosted on **Hugging Face (Backend)** and **Vercel (Frontend)**. If you wish to replicate the deployment:
+
+### Backend (Hugging Face Spaces)
+1. Create a new Space with the **Docker** SDK and the **Blank** template.
+2. Connect your repository; the `Dockerfile` in the root will handle the build.
+3. Ensure Git LFS is enabled for `jobs.db` and the Word2Vec model.
+
+### Frontend (Vercel)
+1. Import the repository.
+2. Set `NEXT_PUBLIC_API_BASE_URL` to your Hugging Face Space URL plus `/api`.
+
+---
+
 ## License
 
 This project is for educational and portfolio purposes.
 
 ---
 
-## Team
+## Author
 
-- Vik Dayal
-- Nathaniel Ola Ogunleye
-- Osele Adeoye
-- Huynh Hai Trieu Le
+- **Osele Adeoye** — [GitHub](https://github.com/Oseleadeoye) | [LinkedIn](https://www.linkedin.com/in/oseleadeoye/)
